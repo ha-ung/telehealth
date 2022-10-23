@@ -1,6 +1,6 @@
 package com.example.mobileproject;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class SimpleLoginActivity extends AppCompatActivity {
