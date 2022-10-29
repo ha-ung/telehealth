@@ -14,9 +14,7 @@
     <item
         android:id="@+id/option4"
         android:title="@string/option4"/>
-    <item
-        android:id="@+id/option5"
-        android:title="@string/option5"/>
+
 
 
 
