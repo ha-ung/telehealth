@@ -12,22 +12,17 @@ import android.widget.Toast;
 import com.example.mobileproject.db.TelehealthDatabase;
 import com.example.mobileproject.db.CasesDao;
 
+import java.security.NoSuchAlgorithmException;
+
 public class SimpleLoginActivity extends AppCompatActivity {
 
     public static String LOG_TAG = SimpleLoginActivity.class.getSimpleName();
-
-    //public static final String EXTRA_MESSAGE = "com.example.android.app.extra.MESSAGE";
-
-    //private EditText username;
-    //private EditText password;
     private EditText caseId;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_login);
-
         caseId = findViewById(R.id.login_input);
     }
 
