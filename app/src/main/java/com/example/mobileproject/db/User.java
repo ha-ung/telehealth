@@ -11,7 +11,8 @@ import java.util.Date;
 public class User {
 
     @PrimaryKey(autoGenerate = true)
-    public int userId;
+    @ColumnInfo(name = "user_id")
+    public Integer userId;
 
     @NonNull
     @ColumnInfo(name = "first_name")

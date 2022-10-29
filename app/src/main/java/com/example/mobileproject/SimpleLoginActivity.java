@@ -3,25 +3,24 @@ package com.example.mobileproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Base64;
+import com.example.mobileproject.db.TelehealthDatabase;
+import com.example.mobileproject.db.CasesDao;
 
 public class SimpleLoginActivity extends AppCompatActivity {
 
-    public static String LOG_NAME = SimpleLoginActivity.class.getSimpleName();
+    public static String LOG_TAG = SimpleLoginActivity.class.getSimpleName();
 
-    public static final String EXTRA_MESSAGE = "com.example.android.app.extra.MESSAGE";
+    //public static final String EXTRA_MESSAGE = "com.example.android.app.extra.MESSAGE";
 
-    private EditText username;
-    private EditText password;
+    //private EditText username;
+    //private EditText password;
+    private EditText caseId;
 
 
     @Override
@@ -29,52 +28,35 @@ public class SimpleLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_login);
 
-        username = findViewById(R.id.usernameInput);
-        password = findViewById(R.id.passwordInput);
-
-        Log.d(LOG_NAME, "Entered Login Screen");
+        caseId = findViewById(R.id.login_input);
     }
 
-    public void login(View view) throws NoSuchAlgorithmException {
-        Log.d(LOG_NAME, "Login into account");
-
-        Intent login = new Intent(this, PatientHomeActivity.class);
-        String usernameIN = username.getText().toString();
-        String passwordIN = password.getText().toString();
-
-        String encryptPasswordIN = hashPassword(passwordIN);
-
-        login.putExtra(EXTRA_MESSAGE, usernameIN);
-        login.putExtra(EXTRA_MESSAGE, encryptPasswordIN);
-
-        startActivity(login);
-    }
-
-    public static String hashPassword(String password) throws NoSuchAlgorithmException{
-
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        md.reset();
-        md.update(password.getBytes());
-        byte[] mdArray = md.digest();
-        StringBuilder sb = new StringBuilder(mdArray.length * 2);
-        for(byte b : mdArray) {
-            int v = b & 0xff;
-            if(v < 16)
-                sb.append('0');
-            sb.append(Integer.toHexString(v));
+    public Boolean validateInput(Integer input) {
+        if (input <= 0) {
+            return false;
         }
-
-        return sb.toString();
-    }
-
-    public static String getSalt() throws NoSuchAlgorithmException {
-        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
-        byte[] salt = new byte[32];
-        sr.nextBytes(salt);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return Base64.getEncoder().encodeToString(salt);
+        else {
+            return true;
         }
-        return null;
     }
 
+    public void login(View view) {
+        int id = Integer.parseInt(caseId.getText().toString());
+        if (validateInput(id)) {
+            Log.d(LOG_TAG, String.valueOf(id));
+            TelehealthDatabase appDatabase = TelehealthDatabase.getDbInstance(getApplicationContext());
+            CasesDao casesDao = appDatabase.casesDao();
+            if (casesDao.getCasesById(id) != null) {
+                Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent (SimpleLoginActivity.this, PatientHomeActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Case ID doesn't exist", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Please enter a valid case ID", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
