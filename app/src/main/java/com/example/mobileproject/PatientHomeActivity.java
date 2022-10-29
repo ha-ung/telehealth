@@ -32,9 +32,6 @@ public class PatientHomeActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottomNavigationView);
         linear = findViewById(R.id.announcement);
 
-        BadgeDrawable badge1 = bottomNav.getOrCreateBadge(R.id.option1);
-        badge1.setVisible(true);
-
         fab.setOnClickListener(v -> { //View v
             Intent intent = new Intent(Intent.ACTION_CALL);
             String uri = "tel"+TELEPHONE;
@@ -42,13 +39,34 @@ public class PatientHomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        /*BadgeDrawable badge1 = bottomNav.getOrCreateBadge(R.id.home);
+        badge1.setVisible(true);*/
+
         bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.option1:
+                case R.id.home:
                     //a
+                    Intent homeIntent = new Intent(this, SimpleLoginActivity.class);
+                    startActivity(homeIntent);
+                    return true;
 
-                case R.id.option2:
+                case R.id.doctor:
                     //b
+                    /*Intent homeIntent = new Intent(this, ViewDoctor.class);
+                    startActivity(homeIntent);
+                    return true;*/
+
+                case R.id.cases:
+                    //b
+                    /*Intent homeIntent = new Intent(this, ViewCase.class);
+                    startActivity(homeIntent);
+                    return true;*/
+
+                case R.id.message:
+                    //b
+                    /*Intent homeIntent = new Intent(this, ViewMessage.class);
+                    startActivity(homeIntent);
+                    return true;*/
 
             }
             return false;

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/option1"
-        android:title="@string/option1"
+        android:id="@+id/home"
+        android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        />
+        android:title="@string/homeBottomNav"/>
     <item
-        android:id="@+id/option2"
-        android:title="@string/option2"/>
+        android:id="@+id/doctor"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_face_24"
+        android:title="@string/doctorBottomNav"/>
     <item
-        android:id="@+id/option3"
-        android:title="@string/option3"/>
+        android:id="@+id/cases"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_work_24"
+        android:title="@string/casesBottomNav"/>
     <item
-        android:id="@+id/option4"
-        android:title="@string/option4"/>
-
-
-
-
-
+        android:id="@+id/message"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:title="@string/messageBottomNav"/>
 </menu>

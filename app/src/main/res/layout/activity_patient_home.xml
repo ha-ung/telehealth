@@ -27,7 +27,8 @@
         android:src="@drawable/ic_baseline_phone"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        style="?attr/floatingActionButtonStyle"/>
+        style="?attr/floatingActionButtonStyle"
+        android:contentDescription="@string/todo" />
 
     <ScrollView
         android:layout_width="0dp"
