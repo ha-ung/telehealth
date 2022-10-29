@@ -35,22 +35,31 @@ public class PatientHomeActivity extends AppCompatActivity {
         BadgeDrawable badge1 = bottomNav.getOrCreateBadge(R.id.option1);
         badge1.setVisible(true);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                String uri = "tel"+TELEPHONE;
-                intent.setData(Uri.parse(uri));
-                startActivity(intent);
-            }
+        fab.setOnClickListener(v -> { //View v
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            String uri = "tel"+TELEPHONE;
+            intent.setData(Uri.parse(uri));
+            startActivity(intent);
         });
 
         bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.option1:
-                    return true;
+                    //a
+
+                case R.id.option2:
+                    //b
+
             }
             return false;
         });
+
+        //Adding additional TextView
+        /*
+        TextView txt = new TextView(this);
+        txt.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        txt.setText("");
+        linear.addView(txt);
+         */
     }
 }
