@@ -20,7 +20,7 @@ public class PatientHomeActivity extends AppCompatActivity {
     FloatingActionButton fab;
     BottomNavigationView bottomNav;
     LinearLayout linear;
-    int TELEPHONE;
+    String TELEPHONE="0123456789";
 
 
     @Override
@@ -33,8 +33,8 @@ public class PatientHomeActivity extends AppCompatActivity {
         linear = findViewById(R.id.announcement);
 
         fab.setOnClickListener(v -> { //View v
-            Intent intent = new Intent(Intent.ACTION_CALL);
-            String uri = "tel"+TELEPHONE;
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            String uri = "tel:" + TELEPHONE;
             intent.setData(Uri.parse(uri));
             startActivity(intent);
         });
@@ -50,15 +50,9 @@ public class PatientHomeActivity extends AppCompatActivity {
                     startActivity(homeIntent);
                     return true;
 
-                case R.id.doctor:
+                case R.id.profile:
                     //b
                     /*Intent homeIntent = new Intent(this, ViewDoctor.class);
-                    startActivity(homeIntent);
-                    return true;*/
-
-                case R.id.cases:
-                    //b
-                    /*Intent homeIntent = new Intent(this, ViewCase.class);
                     startActivity(homeIntent);
                     return true;*/
 

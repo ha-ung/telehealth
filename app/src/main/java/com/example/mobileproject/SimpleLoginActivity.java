@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 public class SimpleLoginActivity extends AppCompatActivity {
 
     public static String LOG_TAG = SimpleLoginActivity.class.getSimpleName();
+    public static final String EXTRA_ID = "com.example.android.mobileproject.extra.ID";
     private EditText inputId;
     private EditText inputPassword;
     private TextView idInputLabel;
@@ -74,6 +75,7 @@ public class SimpleLoginActivity extends AppCompatActivity {
             if (doctorDao.getDoctorById(id) != null && doctorDao.getPasswordById(id).equals(password)) {
                 Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent (SimpleLoginActivity.this, DoctorHomeActivity.class);
+                intent.putExtra(EXTRA_ID, id);
                 startActivity(intent);
             }
             else {

@@ -6,18 +6,13 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/homeBottomNav"/>
     <item
-        android:id="@+id/doctor"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_face_24"
-        android:title="@string/doctorBottomNav"/>
-    <item
-        android:id="@+id/cases"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_work_24"
-        android:title="@string/casesBottomNav"/>
-    <item
         android:id="@+id/message"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_message_24"
         android:title="@string/messageBottomNav"/>
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_profile"
+        android:title="Profile"/>
 </menu>
