@@ -26,7 +26,7 @@ public abstract class TelehealthDatabase extends RoomDatabase {
             INSTANCE = Room
                     .databaseBuilder(context.getApplicationContext(), TelehealthDatabase.class, "telehealth_db")
                     .allowMainThreadQueries()
-                    .createFromAsset("databases/telehealth2.db")
+                    .createFromAsset("databases/telehealth.db")
                     .build();
         }
         return INSTANCE;

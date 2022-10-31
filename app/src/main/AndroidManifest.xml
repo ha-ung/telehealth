@@ -15,27 +15,25 @@
         android:theme="@style/Theme.MobileProject"
         tools:targetApi="31">
         <activity
+            android:name=".DoctorHomeActivity"
+            android:label="Welcome Doctor"
+            android:exported="false" />
+        <activity
             android:name=".PatientHomeActivity"
-            android:exported="false" >
-
-        </activity>
-
+            android:label="Welcome Patient"
+            android:exported="false"></activity>
         <activity
             android:name=".SimpleLoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

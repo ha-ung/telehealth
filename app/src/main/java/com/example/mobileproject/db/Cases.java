@@ -42,4 +42,8 @@ public class Cases {
 
     @ColumnInfo(name = "diagnosis_id")
     public Integer diagnosisId;
+
+    @NonNull
+    @ColumnInfo(name = "password")
+    public String password;
 }

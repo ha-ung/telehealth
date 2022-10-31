@@ -23,4 +23,8 @@ public class Doctor {
     @NonNull
     @ColumnInfo(name = "user_id")
     public Integer userId;
+
+    @NonNull
+    @ColumnInfo(name = "password")
+    public String password;
 }
