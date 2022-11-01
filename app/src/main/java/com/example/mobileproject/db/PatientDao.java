@@ -7,4 +7,6 @@ import java.util.List;
 
 @Dao
 public interface PatientDao {
+    @Query("SELECT user_id FROM patient WHERE patient_id = :id")
+    public Integer getUserIdById(Integer id);
 }

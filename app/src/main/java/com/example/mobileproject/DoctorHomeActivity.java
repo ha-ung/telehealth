@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.ReceiverCallNotAllowedException;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.mobileproject.db.Cases;
 import com.example.mobileproject.db.CasesDao;
@@ -39,8 +40,11 @@ public class DoctorHomeActivity extends AppCompatActivity {
         adapter = new CasesListAdapter(this, casesList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         Log.d("doctor's id", String.valueOf(id));
     }
 
+    public void onClick(View view) {
+        Intent intent = new Intent(this, PatientHomeActivity.class);
+        startActivity(intent);
+    }
 }

@@ -14,9 +14,12 @@ public interface UserDao {
     @Query("SELECT * FROM User")
     List<User> getAllUsers();
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insertUser(User...users);
+    @Query("SELECT (first_name || ' ' || last_name) as full_name FROM User WHERE user_id = :id")
+    public String getFullNameById(Integer id);
 
-    @Delete
-    public void deleteUser(User user);
+    @Query("SELECT gender FROM User WHERE user_id = :id")
+    public String getGenderById(Integer id);
+
+    @Query("SELECT birth_date FROM User WHERE user_id = :id")
+    public String getBirthDateById(Integer id);
 }

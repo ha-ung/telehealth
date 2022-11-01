@@ -1,14 +1,13 @@
 package com.example.mobileproject.db;
 import android.content.Context;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import java.io.File;
 
-@Database(entities = {User.class, Patient.class, Doctor.class, Diagnosis.class, Cases.class}, version = 1)
+@Database(entities = {User.class, Patient.class, Doctor.class, Diagnosis.class, Cases.class, Monitor.class}, version = 1)
 public abstract class TelehealthDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -16,6 +15,7 @@ public abstract class TelehealthDatabase extends RoomDatabase {
     public abstract DoctorDao doctorDao();
     public abstract PatientDao patientDao();
     public abstract CasesDao casesDao();
+    public abstract MonitorDao monitorDao();
     private static TelehealthDatabase INSTANCE;
 
     public static TelehealthDatabase getDbInstance(Context context)  {
@@ -26,7 +26,7 @@ public abstract class TelehealthDatabase extends RoomDatabase {
             INSTANCE = Room
                     .databaseBuilder(context.getApplicationContext(), TelehealthDatabase.class, "telehealth_db")
                     .allowMainThreadQueries()
-                    .createFromAsset("databases/telehealth.db")
+                    .createFromAsset("databases/telehealth2.db")
                     .build();
         }
         return INSTANCE;
