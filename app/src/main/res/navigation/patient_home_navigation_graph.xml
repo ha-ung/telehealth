@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/MessageFragment"
-        android:name="com.example.mobileproject.MessageFragment"
+        android:name="com.example.mobileproject.PatientMessageFragment"
         android:label="MessageFragment"
-        tools:layout="@layout/fragment_message">
+        tools:layout="@layout/fragment_patient_message">
 
         <action
             android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"

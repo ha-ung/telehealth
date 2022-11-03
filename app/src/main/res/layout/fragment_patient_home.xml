@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientHomeFragment">
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_list_button"
         style="?attr/floatingActionButtonStyle"
@@ -16,14 +15,12 @@
         android:src="@drawable/ic_baseline_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:id="@+id/linear_layout"
             android:layout_width="match_parent"
@@ -36,7 +33,6 @@
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
-
             <TextView
                 android:id="@+id/case_title"
                 android:layout_width="wrap_content"
@@ -49,7 +45,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/doctor_name"
                 android:layout_width="wrap_content"
@@ -63,20 +58,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/monitors_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+                android:gravity="center" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

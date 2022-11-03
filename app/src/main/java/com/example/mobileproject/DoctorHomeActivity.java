@@ -5,31 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.mobileproject.db.Cases;
-import com.example.mobileproject.db.CasesDao;
-import com.example.mobileproject.db.TelehealthDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.List;
 
 public class DoctorHomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     DoctorHomeFragment doctorHomeFragment;
     ProfileFragment profileFragment;
-    MessageFragment messageFragment;
+    DoctorMessageFragment doctorMessageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +29,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
 
         doctorHomeFragment = new DoctorHomeFragment();
         profileFragment = new ProfileFragment();
-        messageFragment = new MessageFragment();
+        doctorMessageFragment= new DoctorMessageFragment();
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
         replaceFragment(doctorHomeFragment);
@@ -54,7 +45,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
                         replaceFragment(profileFragment);
                         return true;
                     case R.id.message:
-                        replaceFragment(messageFragment);
+                        replaceFragment(doctorMessageFragment);
                         return true;
                 }
                 return false;
