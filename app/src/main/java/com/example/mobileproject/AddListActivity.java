@@ -40,7 +40,7 @@ public class AddListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_list);
 
         Intent intent = getIntent();
-        caseId = intent.getIntExtra(PatientHomeActivity.EXTRA_ID, 0);
+        caseId = intent.getIntExtra(PatientHomeFragment.EXTRA_ID, 0);
         noteInput = findViewById(R.id.note_input);
         symptoms  = "";
         date = String.valueOf(LocalDate.now());

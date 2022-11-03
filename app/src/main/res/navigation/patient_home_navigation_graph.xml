@@ -6,9 +6,9 @@
     app:startDestination="@id/HomeFragment">
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="com.example.mobileproject.PatientHomeActivity_HomeFragment"
+        android:name="com.example.mobileproject.PatientHomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_patient_home_activity__home">
+        tools:layout="@layout/fragment_patient_home">
 
         <action
             android:id="@+id/action_HomeFragment_to_MessageFragment"
@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/MessageFragment"
-        android:name="com.example.mobileproject.PatientHomeActivity_MessageFragment"
+        android:name="com.example.mobileproject.MessageFragment"
         android:label="MessageFragment"
-        tools:layout="@layout/fragment_patient_home_activity__message">
+        tools:layout="@layout/fragment_message">
 
         <action
             android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"
@@ -32,9 +32,9 @@
     </fragment>
     <fragment
         android:id="@+id/patientHomeActivity_ProfileFragment"
-        android:name="com.example.mobileproject.PatientHomeActivity_ProfileFragment"
+        android:name="com.example.mobileproject.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_patient_home_activity__profile">
+        tools:layout="@layout/fragment_profile">
 
         <action
             android:id="@+id/action_patientHomeActivity_ProfileFragment_to_MessageFragment"
