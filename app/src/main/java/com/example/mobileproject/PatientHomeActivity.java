@@ -3,6 +3,8 @@ package com.example.mobileproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -97,21 +99,34 @@ public class PatientHomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.home:
                     //a
+                    /*
                     Intent homeIntent = new Intent(this, SimpleLoginActivity.class);
                     startActivity(homeIntent);
-                    return true;
+                    return true;*/
+                    PatientHomeActivity_HomeFragment homeFragment = new PatientHomeActivity_HomeFragment();
+                    FragmentTransaction homeTransaction = getSupportFragmentManager().beginTransaction();
+                    homeTransaction.replace(R.id.content, homeFragment, "");
+                    homeTransaction.commit();
 
                 case R.id.profile:
                     //b
                     /*Intent homeIntent = new Intent(this, ViewDoctor.class);
                     startActivity(homeIntent);
                     return true;*/
+                    PatientHomeActivity_ProfileFragment profileFragment = new PatientHomeActivity_ProfileFragment();
+                    FragmentTransaction profileTransaction = getSupportFragmentManager().beginTransaction();
+                    profileTransaction.replace(R.id.content, profileFragment, "");
+                    profileTransaction.commit();
 
                 case R.id.message:
                     //b
                     /*Intent homeIntent = new Intent(this, ViewMessage.class);
                     startActivity(homeIntent);
                     return true;*/
+                    PatientHomeActivity_MessageFragment messageFragment = new PatientHomeActivity_MessageFragment();
+                    FragmentTransaction messageTransaction = getSupportFragmentManager().beginTransaction();
+                    messageTransaction.replace(R.id.content, messageFragment, "");
+                    messageTransaction.commit();
 
             }
             return false;

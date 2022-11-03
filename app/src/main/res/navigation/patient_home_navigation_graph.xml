@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/patient_home_navigation_graph"
+    app:startDestination="@id/HomeFragment">
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.example.mobileproject.PatientHomeActivity_HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_patient_home_activity__home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_MessageFragment"
+            app:destination="@id/MessageFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_patientHomeActivity_ProfileFragment"
+            app:destination="@id/patientHomeActivity_ProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MessageFragment"
+        android:name="com.example.mobileproject.PatientHomeActivity_MessageFragment"
+        android:label="MessageFragment"
+        tools:layout="@layout/fragment_patient_home_activity__message">
+
+        <action
+            android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"
+            app:destination="@id/patientHomeActivity_ProfileFragment" />
+        <action
+            android:id="@+id/action_MessageFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientHomeActivity_ProfileFragment"
+        android:name="com.example.mobileproject.PatientHomeActivity_ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_patient_home_activity__profile">
+
+        <action
+            android:id="@+id/action_patientHomeActivity_ProfileFragment_to_MessageFragment"
+            app:destination="@id/MessageFragment" />
+        <action
+            android:id="@+id/action_patientHomeActivity_ProfileFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+
+</navigation>
