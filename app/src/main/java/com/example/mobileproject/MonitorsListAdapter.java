@@ -18,7 +18,7 @@ import com.example.mobileproject.db.TelehealthDatabase;
 import java.util.List;
 
 public class MonitorsListAdapter extends RecyclerView.Adapter<MonitorsListAdapter.MonitorListHolder> {
-    private final List<Monitor> monitorsList;
+    private List<Monitor> monitorsList;
     private LayoutInflater inflater;
 
     public MonitorsListAdapter(Context context, List<Monitor> monitorsList) {
@@ -63,6 +63,11 @@ public class MonitorsListAdapter extends RecyclerView.Adapter<MonitorsListAdapte
         holder.symptom.setText("Symptom: " + symptom);
         holder.note.setText("Note: " + note);
         holder.date.setText("Date: " + date);
+    }
+
+    public void setListContent(List<Monitor> monitorsList) {
+        this.monitorsList = monitorsList;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -65,6 +65,7 @@ public class SimpleLoginActivity extends AppCompatActivity {
             if (casesDao.getCasesById(id) != null && casesDao.getPasswordById(id).equals(password)) {
                 Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent (SimpleLoginActivity.this, PatientHomeActivity.class);
+                intent.putExtra(EXTRA_ID, id);
                 startActivity(intent);
             }
             else {

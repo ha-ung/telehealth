@@ -15,9 +15,13 @@
         android:theme="@style/Theme.MobileProject"
         tools:targetApi="31">
         <activity
-            android:name=".CaseDetailActivity"
-            android:label="Case Detail"
+            android:name=".AddListActivity"
+            android:label="Add A Monitor List"
             android:exported="false" />
+        <activity
+            android:name=".CaseDetailActivity"
+            android:exported="false"
+            android:label="Case Detail" />
         <activity
             android:name=".DoctorHomeActivity"
             android:exported="false"

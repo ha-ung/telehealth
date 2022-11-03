@@ -19,16 +19,27 @@
         style="?attr/bottomNavigationStyle"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/callButton"
+        android:id="@+id/add_list_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_baseline_phone"
+        android:src="@drawable/ic_baseline_add"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        style="?attr/floatingActionButtonStyle"
-        android:contentDescription="Call hospital" />
+        style="?attr/floatingActionButtonStyle" />
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/callButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        android:src="@drawable/ic_baseline_phone"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        style="?attr/floatingActionButtonStyle"-->
+<!--        android:contentDescription="Call hospital" />-->
 
     <ScrollView
         android:layout_width="0dp"
@@ -37,20 +48,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/announcement">
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <TextView
+                android:id="@+id/case_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Your Case"
+                android:textColor="#000"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Patient: Ha Ung"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/monitors_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/announcement"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="34sp"
-                android:textStyle="bold" />
+                android:gravity="center"/>
+
         </LinearLayout>
     </ScrollView>
 

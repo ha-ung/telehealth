@@ -17,4 +17,34 @@
     <string name="passwordInput">Password</string>
     <string name="announcement">Announcement</string>
     <string name="todo">TODO</string>
+
+    <string-array name="symptoms_array">
+        <item>Sneeze</item>
+        <item>Cough</item>
+        <item>Migraine</item>
+        <item>Shortness of breath</item>
+        <item>Stomachache</item>
+        <item>Joint pain</item>
+        <item>Fatigue</item>
+        <item>Lack of coordination</item>
+        <item>Slurred speech</item>
+        <item>Sensitivity to light</item>
+        <item>Fever</item>
+        <item>Runny nose</item>
+        <item>Sore throat</item>
+        <item>Skin rash</item>
+        <item>Sore muscles</item>
+        <item>Joint stiffness</item>
+        <item>Swollen limb</item>
+        <item>Hair loss</item>
+        <item>Mouth sore</item>
+        <item>Nausea</item>
+        <item>Diarrhea</item>
+        <item>Constipation</item>
+        <item>Bloating</item>
+        <item>Difficulty falling asleep</item>
+        <item>Frequent urination</item>
+        <item>Blurry vision</item>
+        <item>Infection</item>
+    </string-array>
 </resources>

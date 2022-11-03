@@ -2,8 +2,6 @@ package com.example.mobileproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileproject.db.Cases;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CasesListAdapter extends RecyclerView.Adapter<CasesListAdapter.CaseItemHolder> {

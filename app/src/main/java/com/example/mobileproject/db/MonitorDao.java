@@ -1,6 +1,8 @@
 package com.example.mobileproject.db;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -15,4 +17,7 @@ public interface MonitorDao {
 
     @Query("SELECT date FROM Monitor WHERE monitor_id = :id")
     public String getDateById(Integer id);
+
+    @Insert
+    public void insertMonitor(Monitor monitor);
 }
