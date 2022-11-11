@@ -16,6 +16,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.mobileproject.db.CasesDao;
+import com.example.mobileproject.db.PatientDao;
+import com.example.mobileproject.db.TelehealthDatabase;
+import com.example.mobileproject.db.UserDao;
+
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -81,8 +86,11 @@ public class ProfileFragment extends Fragment {
 
         this.birthday_input = (EditText) requireView().findViewById(R.id.birthday_input);
         Button buttonDate = (Button) getView().findViewById(R.id.button_date);
+        Button buttonUpdate = (Button) getView().findViewById(R.id.button_update);
 
         buttonDate.setOnClickListener(v -> buttonSelectDate());
+        buttonUpdate.setOnClickListener(v -> updateProfile());
+
 
         // Get Current Date
         final Calendar c = Calendar.getInstance();
@@ -137,9 +145,20 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    public void updateProfile(View view) {
+    public void updateProfile() {
+        EditText firstname = (EditText) getView().findViewById(R.id.first_name_input);
+        EditText lastname = (EditText) getView().findViewById(R.id.last_name_input);
+        EditText birthday = (EditText) getView().findViewById(R.id.birthday_input);
+        EditText phone = (EditText) getView().findViewById(R.id.phone_input);
+        EditText password = (EditText) getView().findViewById(R.id.password_input);
+        TelehealthDatabase db = TelehealthDatabase.getDbInstance(getActivity());
 
-        
+        UserDao userDao = db.userDao();
+        PatientDao patientDao = db.patientDao();
 
+        Integer userId = getActivity().getIntent().getIntExtra(SimpleLoginActivity.EXTRA_ID, 0);
+        userDao.updateProfile(userId, firstname.getText().toString(), lastname.getText().toString(), birthday.getText().toString(), phone.getText().toString());
+        Integer patientId = patientDao.getPatientIdById(userId);
+        userDao.updatePassword(patientId, password.getText().toString());
     }
 }

@@ -5,6 +5,8 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -22,4 +24,11 @@ public interface UserDao {
 
     @Query("SELECT birth_date FROM User WHERE user_id = :id")
     public String getBirthDateById(Integer id);
+
+    @Query("UPDATE User SET first_name = :firstname , last_name = :lastname, birth_date = :birthday, phone_number = :phone " +
+            "WHERE user_id =:id")
+    public void updateProfile(Integer id, String firstname, String lastname, String birthday, String phone);
+    @Query("UPDATE Cases SET password = :password WHERE patient_id = :patient_id")
+    public void updatePassword(Integer patient_id, String password);
+
 }
