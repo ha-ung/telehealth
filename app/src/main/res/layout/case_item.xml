@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:layout_marginTop="30dp">
+    android:layout_marginTop="16dp">
     <TextView
         android:id="@+id/case_item"
         android:layout_width="match_parent"

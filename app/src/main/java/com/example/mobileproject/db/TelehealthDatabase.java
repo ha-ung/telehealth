@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 
 import java.io.File;
 
-@Database(entities = {User.class, Patient.class, Doctor.class, Diagnosis.class, Cases.class, Monitor.class}, version = 1)
+@Database(entities = {User.class, Patient.class, Doctor.class, Diagnosis.class, Cases.class, Monitor.class, Message.class}, version = 1)
 public abstract class TelehealthDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -16,6 +16,7 @@ public abstract class TelehealthDatabase extends RoomDatabase {
     public abstract PatientDao patientDao();
     public abstract CasesDao casesDao();
     public abstract MonitorDao monitorDao();
+    public abstract MessageDao messageDao();
     private static TelehealthDatabase INSTANCE;
 
     public static TelehealthDatabase getDbInstance(Context context)  {
@@ -26,7 +27,7 @@ public abstract class TelehealthDatabase extends RoomDatabase {
             INSTANCE = Room
                     .databaseBuilder(context.getApplicationContext(), TelehealthDatabase.class, "telehealth_db")
                     .allowMainThreadQueries()
-                    .createFromAsset("databases/telehealth2.db")
+                    .createFromAsset("databases/telehealth.db")
                     .build();
         }
         return INSTANCE;

@@ -5,6 +5,7 @@
         android:id="@+id/request_checkup"
         android:icon="@drawable/ic_baseline_video_call"
         app:showAsAction="always"
+        android:visibility="invisible"
         android:title="Request checkup"/>
     <item
         android:id="@+id/call_hospital"

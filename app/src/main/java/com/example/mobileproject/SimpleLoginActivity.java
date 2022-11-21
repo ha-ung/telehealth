@@ -12,8 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobileproject.db.DoctorDao;
+import com.example.mobileproject.db.PatientDao;
 import com.example.mobileproject.db.TelehealthDatabase;
 import com.example.mobileproject.db.CasesDao;
+import com.example.mobileproject.db.UserDao;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -21,6 +23,7 @@ public class SimpleLoginActivity extends AppCompatActivity {
 
     public static String LOG_TAG = SimpleLoginActivity.class.getSimpleName();
     public static final String EXTRA_ID = "com.example.android.mobileproject.extra.ID";
+    public static final String EXTRA_USER_ID = "com.example.android.mobileproject.extra.USER.ID";
     private EditText inputId;
     private EditText inputPassword;
     private TextView idInputLabel;
@@ -60,12 +63,19 @@ public class SimpleLoginActivity extends AppCompatActivity {
         Log.d(LOG_TAG, String.valueOf(id));
         TelehealthDatabase appDatabase = TelehealthDatabase.getDbInstance(getApplicationContext());
         CasesDao casesDao = appDatabase.casesDao();
+        UserDao userDao = appDatabase.userDao();
+        PatientDao patientDao = appDatabase.patientDao();
         DoctorDao doctorDao = appDatabase.doctorDao();
         if (idInputLabel.getText().toString().equals("Case ID")) {
             if (casesDao.getCasesById(id) != null && casesDao.getPasswordById(id).equals(password)) {
                 Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent (SimpleLoginActivity.this, PatientHomeActivity.class);
                 intent.putExtra(EXTRA_ID, id);
+
+                Integer patientId = casesDao.getPatientIdById(id);
+                Integer userId = patientDao.getUserIdById(patientId);
+                Intent idIntent = new Intent (SimpleLoginActivity.this, PatientHomeActivity.class);
+                intent.putExtra(EXTRA_USER_ID, userId);
                 startActivity(intent);
             }
             else {
