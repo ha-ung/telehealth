@@ -3,14 +3,10 @@ package com.example.mobileproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,20 +28,25 @@ public class DoctorHomeActivity extends AppCompatActivity {
         doctorMessageFragment= new DoctorMessageFragment();
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        replaceFragment(doctorHomeFragment);
+        /*
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.frame_layout_doctor);
+        NavController navController = navHostFragment.getNavController();*/
+        replaceFragment(R.id.HomeFragment);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(doctorHomeFragment);
+                        replaceFragment(R.id.HomeFragment);
                         return true;
                     case R.id.profile:
-                        replaceFragment(profileFragment);
+                        replaceFragment(R.id.ProfileFragment);
                         return true;
                     case R.id.message:
-                        replaceFragment(doctorMessageFragment);
+                        replaceFragment(R.id.MessageFragment);
                         return true;
                 }
                 return false;
@@ -73,10 +74,16 @@ public class DoctorHomeActivity extends AppCompatActivity {
 //        return false;
 //    }
 
-    public void replaceFragment(Fragment fragment) {
+    public void replaceFragment(int destinationID) {
+        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.frame_layout_doctor);
+        NavController navController = navHostFragment.getNavController();
+        navController.navigate(destinationID);
     }
 }

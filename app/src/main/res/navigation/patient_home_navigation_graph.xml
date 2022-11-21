@@ -15,7 +15,7 @@
             app:destination="@id/MessageFragment" />
         <action
             android:id="@+id/action_HomeFragment_to_patientHomeActivity_ProfileFragment"
-            app:destination="@id/patientHomeActivity_ProfileFragment" />
+            app:destination="@id/ProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/MessageFragment"
@@ -25,13 +25,13 @@
 
         <action
             android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"
-            app:destination="@id/patientHomeActivity_ProfileFragment" />
+            app:destination="@id/ProfileFragment" />
         <action
             android:id="@+id/action_MessageFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/patientHomeActivity_ProfileFragment"
+        android:id="@+id/ProfileFragment"
         android:name="com.example.mobileproject.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">

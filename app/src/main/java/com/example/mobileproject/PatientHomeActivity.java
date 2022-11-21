@@ -2,9 +2,8 @@ package com.example.mobileproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -32,20 +31,26 @@ public class PatientHomeActivity extends AppCompatActivity {
         patientMessageFragment = new PatientMessageFragment();
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        replaceFragment(patientHomeFragment);
+        replaceFragment(R.id.HomeFragment);
+        /*
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.frame_layout);
+        NavController navController = navHostFragment.getNavController();*/
+        //replaceFragment(patientHomeFragment);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(patientHomeFragment);
+                        replaceFragment(R.id.HomeFragment);
                         return true;
                     case R.id.profile:
-                        replaceFragment(profileFragment);
+                        replaceFragment(R.id.ProfileFragment);
                         return true;
                     case R.id.message:
-                        replaceFragment(patientMessageFragment);
+                        replaceFragment(R.id.MessageFragment);
                         return true;
                 }
                 return false;
@@ -73,10 +78,16 @@ public class PatientHomeActivity extends AppCompatActivity {
         return false;
     }
 
-    public void replaceFragment(Fragment fragment) {
+    public void replaceFragment(int destinationID) {
+        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.frame_layout_patient);
+        NavController navController = navHostFragment.getNavController();
+        navController.navigate(destinationID);
     }
 }
