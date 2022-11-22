@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.mobileproject.db.CasesDao;
+import com.example.mobileproject.db.DoctorDao;
 import com.example.mobileproject.db.PatientDao;
 import com.example.mobileproject.db.TelehealthDatabase;
 import com.example.mobileproject.db.UserDao;
@@ -42,6 +43,9 @@ public class ProfileFragment extends Fragment {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button btnDisplay;
+
+    private static final int PATIENT = 1;
+    private static final int DOCTOR = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -153,10 +157,25 @@ public class ProfileFragment extends Fragment {
         EditText password = (EditText) getView().findViewById(R.id.password_input);
         TelehealthDatabase db = TelehealthDatabase.getDbInstance(getActivity());
 
+        CasesDao casesDao = db.casesDao();
         UserDao userDao = db.userDao();
         PatientDao patientDao = db.patientDao();
+        DoctorDao doctorDao = db.doctorDao();
 
-        Integer userId = getActivity().getIntent().getIntExtra(SimpleLoginActivity.EXTRA_ID, 0);
+        int user;
+
+        Integer caseId = getActivity().getIntent().getIntExtra(SimpleLoginActivity.EXTRA_ID, 0);
+        Integer userId = getActivity().getIntent().getIntExtra(SimpleLoginActivity.EXTRA_USER_ID, 0);
+        if (userId == 0 && caseId != 0) {
+            user = DOCTOR;
+        } else {
+            user = PATIENT;
+        }
+        if (user == DOCTOR) {
+            Integer doctorId = casesDao.getDoctorIdById(caseId);
+            userId = doctorDao.getUserIdById(doctorId);
+        }
+
         userDao.updateProfile(userId, firstname.getText().toString(), lastname.getText().toString(), birthday.getText().toString(), phone.getText().toString());
         Integer patientId = patientDao.getPatientIdById(userId);
         userDao.updatePassword(patientId, password.getText().toString());
