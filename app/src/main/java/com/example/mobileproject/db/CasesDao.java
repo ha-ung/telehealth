@@ -25,4 +25,7 @@ public interface CasesDao {
 
     @Query("SELECT doctor_id FROM Cases WHERE case_id = :id")
     public Integer getDoctorIdById(Integer id);
+
+    @Query("SELECT phone_number FROM User WHERE user_id IN (SELECT user_id FROM Doctor WHERE doctor_id IN (SELECT doctor_id FROM Cases WHERE case_id = :id))")
+    public String getDoctorPhoneNumberByCaseId(Integer id);
 }

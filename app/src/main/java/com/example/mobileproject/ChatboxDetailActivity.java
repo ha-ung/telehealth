@@ -62,7 +62,6 @@ public class ChatboxDetailActivity extends AppCompatActivity {
         recyclerView.scrollToPosition(messagesList.size() - 1);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     public void sendMessage(View view) {
