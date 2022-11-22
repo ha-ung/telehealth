@@ -6,28 +6,28 @@
     app:startDestination="@id/DoctorHomeFragment">
     <fragment
         android:id="@+id/DoctorHomeFragment"
-        android:name="com.example.mobileproject.PatientHomeFragment"
+        android:name="com.example.mobileproject.DoctorHomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_patient_home">
 
         <action
-            android:id="@+id/action_HomeFragment_to_MessageFragment"
+            android:id="@+id/action_DoctorHomeFragment_to_DoctorMessageFragment"
             app:destination="@id/DoctorMessageFragment" />
         <action
-            android:id="@+id/action_HomeFragment_to_patientHomeActivity_ProfileFragment"
+            android:id="@+id/action_DoctorHomeFragment_to_ProfileFragment"
             app:destination="@id/DoctorProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/DoctorMessageFragment"
-        android:name="com.example.mobileproject.PatientMessageFragment"
+        android:name="com.example.mobileproject.DoctorMessageFragment"
         android:label="MessageFragment"
         tools:layout="@layout/fragment_patient_message">
 
         <action
-            android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"
+            android:id="@+id/action_DoctorMessageFragment_to_ProfileFragment"
             app:destination="@id/DoctorProfileFragment" />
         <action
-            android:id="@+id/action_MessageFragment_to_HomeFragment"
+            android:id="@+id/action_DoctorMessageFragment_to_DoctorHomeFragment"
             app:destination="@id/DoctorHomeFragment" />
     </fragment>
     <fragment
@@ -37,10 +37,10 @@
         tools:layout="@layout/fragment_profile">
 
         <action
-            android:id="@+id/action_patientHomeActivity_ProfileFragment_to_MessageFragment"
+            android:id="@+id/action_ProfileFragment_to_DoctorMessageFragment"
             app:destination="@id/DoctorMessageFragment" />
         <action
-            android:id="@+id/action_patientHomeActivity_ProfileFragment_to_HomeFragment"
+            android:id="@+id/action_ProfileFragment_to_DoctorHomeFragment"
             app:destination="@id/DoctorHomeFragment" />
     </fragment>
 
