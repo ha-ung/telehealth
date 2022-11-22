@@ -172,7 +172,7 @@ public class ProfileFragment extends Fragment {
             user = PATIENT;
         }
         if (user == DOCTOR) {
-            Integer doctorId = casesDao.getDoctorIdById(caseId);
+            Integer doctorId = caseId;
             userId = doctorDao.getUserIdById(doctorId);
         }
 
