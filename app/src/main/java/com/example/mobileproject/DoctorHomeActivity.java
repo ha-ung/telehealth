@@ -2,7 +2,6 @@ package com.example.mobileproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -31,26 +30,26 @@ public class DoctorHomeActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         doctorMessageFragment= new DoctorMessageFragment();
 
-        bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView = findViewById(R.id.bottom_nav_doctor);
         /*
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.frame_layout_doctor);
         NavController navController = navHostFragment.getNavController();*/
-        replaceFragment(R.id.HomeFragment);
+        replaceFragment(R.id.DoctorHomeFragment);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(R.id.HomeFragment);
+                        replaceFragment(R.id.DoctorHomeFragment);
                         return true;
                     case R.id.profile:
-                        replaceFragment(R.id.ProfileFragment);
+                        replaceFragment(R.id.DoctorProfileFragment);
                         return true;
                     case R.id.message:
-                        replaceFragment(R.id.MessageFragment);
+                        replaceFragment(R.id.DoctorMessageFragment);
                         return true;
                 }
                 return false;

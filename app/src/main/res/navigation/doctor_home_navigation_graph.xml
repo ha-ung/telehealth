@@ -3,45 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/patient_home_navigation_graph"
-    app:startDestination="@id/PatientHomeFragment">
+    app:startDestination="@id/DoctorHomeFragment">
     <fragment
-        android:id="@+id/PatientHomeFragment"
+        android:id="@+id/DoctorHomeFragment"
         android:name="com.example.mobileproject.PatientHomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_patient_home">
 
         <action
             android:id="@+id/action_HomeFragment_to_MessageFragment"
-            app:destination="@id/PatientMessageFragment" />
+            app:destination="@id/DoctorMessageFragment" />
         <action
             android:id="@+id/action_HomeFragment_to_patientHomeActivity_ProfileFragment"
-            app:destination="@id/PatientProfileFragment" />
+            app:destination="@id/DoctorProfileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/PatientMessageFragment"
+        android:id="@+id/DoctorMessageFragment"
         android:name="com.example.mobileproject.PatientMessageFragment"
         android:label="MessageFragment"
         tools:layout="@layout/fragment_patient_message">
 
         <action
             android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"
-            app:destination="@id/PatientProfileFragment" />
+            app:destination="@id/DoctorProfileFragment" />
         <action
             android:id="@+id/action_MessageFragment_to_HomeFragment"
-            app:destination="@id/PatientHomeFragment" />
+            app:destination="@id/DoctorHomeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/PatientProfileFragment"
+        android:id="@+id/DoctorProfileFragment"
         android:name="com.example.mobileproject.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
 
         <action
             android:id="@+id/action_patientHomeActivity_ProfileFragment_to_MessageFragment"
-            app:destination="@id/PatientMessageFragment" />
+            app:destination="@id/DoctorMessageFragment" />
         <action
             android:id="@+id/action_patientHomeActivity_ProfileFragment_to_HomeFragment"
-            app:destination="@id/PatientHomeFragment" />
+            app:destination="@id/DoctorHomeFragment" />
     </fragment>
 
 

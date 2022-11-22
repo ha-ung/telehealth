@@ -8,7 +8,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,8 +42,8 @@ public class PatientHomeActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         patientMessageFragment = new PatientMessageFragment();
 
-        bottomNavigationView = findViewById(R.id.bottom_nav);
-        replaceFragment(R.id.HomeFragment);
+        bottomNavigationView = findViewById(R.id.bottom_nav_patient);
+        replaceFragment(R.id.PatientHomeFragment);
         /*
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
@@ -57,13 +56,13 @@ public class PatientHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(R.id.HomeFragment);
+                        replaceFragment(R.id.PatientHomeFragment);
                         return true;
                     case R.id.profile:
-                        replaceFragment(R.id.ProfileFragment);
+                        replaceFragment(R.id.PatientProfileFragment);
                         return true;
                     case R.id.message:
-                        replaceFragment(R.id.MessageFragment);
+                        replaceFragment(R.id.PatientMessageFragment);
                         return true;
                 }
                 return false;
