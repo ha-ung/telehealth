@@ -93,7 +93,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        intent = getActivity().getIntent();
+        intent = requireActivity().getIntent();
         caseId = intent.getIntExtra(SimpleLoginActivity.EXTRA_ID, 0);
         userId = intent.getIntExtra(SimpleLoginActivity.EXTRA_USER_ID, 0);
 
