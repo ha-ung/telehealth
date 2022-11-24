@@ -2,8 +2,10 @@ package com.example.mobileproject;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -41,6 +43,10 @@ public class ProfileFragment extends Fragment {
     private EditText birthday;
     private EditText phone;
     private EditText password;
+
+    private Intent intent;
+    private Integer caseId;
+    private Integer userId;
 
     private int lastSelectedYear;
     private int lastSelectedMonth;
@@ -85,8 +91,17 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        intent = getActivity().getIntent();
+        caseId = intent.getIntExtra(SimpleLoginActivity.EXTRA_ID, 0);
+        userId = intent.getIntExtra(SimpleLoginActivity.EXTRA_USER_ID, 0);
+
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -171,8 +186,6 @@ public class ProfileFragment extends Fragment {
 
         int user;
 
-        Integer caseId = getActivity().getIntent().getIntExtra(SimpleLoginActivity.EXTRA_ID, 0);
-        Integer userId = getActivity().getIntent().getIntExtra(SimpleLoginActivity.EXTRA_USER_ID, 0);
         if (userId == 0 && caseId != 0) {
             user = DOCTOR;
         } else {
