@@ -36,6 +36,12 @@ public class ProfileFragment extends Fragment {
 
     private EditText gender_input;
 
+    private EditText firstname;
+    private EditText lastname;
+    private EditText birthday;
+    private EditText phone;
+    private EditText password;
+
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
@@ -89,6 +95,12 @@ public class ProfileFragment extends Fragment {
         addListenerOnButton();
 
         this.birthday_input = (EditText) requireView().findViewById(R.id.birthday_input);
+        firstname = (EditText) requireView().findViewById(R.id.first_name_input);
+        lastname = (EditText) requireView().findViewById(R.id.last_name_input);
+        birthday = (EditText) requireView().findViewById(R.id.birthday_input);
+        phone = (EditText) requireView().findViewById(R.id.phone_input);
+        password = (EditText) requireView().findViewById(R.id.password_input);
+
         Button buttonDate = (Button) getView().findViewById(R.id.button_date);
         Button buttonUpdate = (Button) getView().findViewById(R.id.button_update);
 
@@ -150,11 +162,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public void updateProfile() {
-        EditText firstname = (EditText) getView().findViewById(R.id.first_name_input);
-        EditText lastname = (EditText) getView().findViewById(R.id.last_name_input);
-        EditText birthday = (EditText) getView().findViewById(R.id.birthday_input);
-        EditText phone = (EditText) getView().findViewById(R.id.phone_input);
-        EditText password = (EditText) getView().findViewById(R.id.password_input);
         TelehealthDatabase db = TelehealthDatabase.getDbInstance(getActivity());
 
         CasesDao casesDao = db.casesDao();
