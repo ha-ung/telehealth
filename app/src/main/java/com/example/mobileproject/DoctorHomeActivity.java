@@ -8,9 +8,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,11 +23,14 @@ public class DoctorHomeActivity extends AppCompatActivity {
     DoctorHomeFragment doctorHomeFragment;
     ProfileFragment profileFragment;
     DoctorMessageFragment doctorMessageFragment;
+    private int exitCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home);
+
+        exitCount = 0;
 
         doctorHomeFragment = new DoctorHomeFragment();
         profileFragment = new ProfileFragment();
@@ -90,5 +96,26 @@ public class DoctorHomeActivity extends AppCompatActivity {
                         .findFragmentById(R.id.frame_layout_doctor);
         NavController navController = navHostFragment.getNavController();
         navController.navigate(destinationID);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        exitCount++;
+        if (exitCount == 1) {
+            Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
+        }
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                exitCount = 0;
+            }
+        }, 1000);
     }
 }
