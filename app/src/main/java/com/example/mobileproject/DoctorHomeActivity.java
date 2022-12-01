@@ -24,6 +24,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
     ProfileFragment profileFragment;
     DoctorMessageFragment doctorMessageFragment;
     private int exitCount;
+    private String current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +44,38 @@ public class DoctorHomeActivity extends AppCompatActivity {
                         .findFragmentById(R.id.frame_layout_doctor);
         NavController navController = navHostFragment.getNavController();*/
         replaceFragment(R.id.DoctorHomeFragment);
+        current = "Home";
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(R.id.DoctorHomeFragment);
+                        if (current.equals("Message"))
+                            replaceFragment(R.id.action_DoctorMessageFragment_to_DoctorHomeFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_ProfileFragment_to_DoctorHomeFragment);
+                        }
+                        current = "Home";
                         return true;
                     case R.id.profile:
-                        replaceFragment(R.id.DoctorProfileFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_DoctorHomeFragment_to_ProfileFragment);
+                        else {
+                            if (current.equals("Message"))
+                                replaceFragment(R.id.action_DoctorMessageFragment_to_ProfileFragment);
+                        }
+                        current = "Profile";
                         return true;
                     case R.id.message:
-                        replaceFragment(R.id.DoctorMessageFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_DoctorHomeFragment_to_DoctorMessageFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_ProfileFragment_to_DoctorMessageFragment);
+                        }
+                        current = "Message";
                         return true;
                 }
                 return false;

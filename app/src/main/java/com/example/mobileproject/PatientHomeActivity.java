@@ -29,6 +29,7 @@ public class PatientHomeActivity extends AppCompatActivity {
     private Integer caseId;
     private int exitCount;
     public static final String EXTRA_ID = "com.example.android.mobileproject.extra.ID";
+    private String current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class PatientHomeActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_nav_patient);
         replaceFragment(R.id.PatientHomeFragment);
+        current = "Home";
         /*
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
@@ -62,13 +64,31 @@ public class PatientHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(R.id.PatientHomeFragment);
+                        if (current.equals("Message"))
+                            replaceFragment(R.id.action_MessageFragment_to_HomeFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_patientHomeActivity_ProfileFragment_to_HomeFragment);
+                        }
+                        current = "Home";
                         return true;
                     case R.id.profile:
-                        replaceFragment(R.id.PatientProfileFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_HomeFragment_to_patientHomeActivity_ProfileFragment);
+                        else {
+                            if (current.equals("Message"))
+                                replaceFragment(R.id.action_MessageFragment_to_patientHomeActivity_ProfileFragment);
+                        }
+                        current = "Profile";
                         return true;
                     case R.id.message:
-                        replaceFragment(R.id.PatientMessageFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_HomeFragment_to_MessageFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_patientHomeActivity_ProfileFragment_to_MessageFragment);
+                        }
+                        current = "Message";
                         return true;
                 }
                 return false;

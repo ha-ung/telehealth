@@ -12,10 +12,18 @@
 
         <action
             android:id="@+id/action_HomeFragment_to_MessageFragment"
-            app:destination="@id/PatientMessageFragment" />
+            app:destination="@id/PatientMessageFragment"
+            app:enterAnim="@anim/fade_in_center"
+            app:exitAnim="@anim/fade_out_center"
+            app:popEnterAnim="@anim/popup_enter"
+            app:popExitAnim="@anim/popup_exit" />
         <action
             android:id="@+id/action_HomeFragment_to_patientHomeActivity_ProfileFragment"
-            app:destination="@id/PatientProfileFragment" />
+            app:destination="@id/PatientProfileFragment"
+            app:enterAnim="@anim/fade_in_center"
+            app:exitAnim="@anim/fade_out_center"
+            app:popEnterAnim="@anim/popup_enter"
+            app:popExitAnim="@anim/popup_exit" />
     </fragment>
     <fragment
         android:id="@+id/PatientMessageFragment"
@@ -25,10 +33,18 @@
 
         <action
             android:id="@+id/action_MessageFragment_to_patientHomeActivity_ProfileFragment"
-            app:destination="@id/PatientProfileFragment" />
+            app:destination="@id/PatientProfileFragment"
+            app:enterAnim="@anim/fade_in_center"
+            app:exitAnim="@anim/fade_out_center"
+            app:popEnterAnim="@anim/popup_enter"
+            app:popExitAnim="@anim/popup_exit" />
         <action
             android:id="@+id/action_MessageFragment_to_HomeFragment"
-            app:destination="@id/PatientHomeFragment" />
+            app:destination="@id/PatientHomeFragment"
+            app:enterAnim="@anim/fade_in_center"
+            app:exitAnim="@anim/fade_out_center"
+            app:popEnterAnim="@anim/popup_enter"
+            app:popExitAnim="@anim/popup_exit" />
     </fragment>
     <fragment
         android:id="@+id/PatientProfileFragment"
@@ -38,10 +54,18 @@
 
         <action
             android:id="@+id/action_patientHomeActivity_ProfileFragment_to_MessageFragment"
-            app:destination="@id/PatientMessageFragment" />
+            app:destination="@id/PatientMessageFragment"
+            app:enterAnim="@anim/fade_in_center"
+            app:exitAnim="@anim/fade_out_center"
+            app:popEnterAnim="@anim/popup_enter"
+            app:popExitAnim="@anim/popup_exit" />
         <action
             android:id="@+id/action_patientHomeActivity_ProfileFragment_to_HomeFragment"
-            app:destination="@id/PatientHomeFragment" />
+            app:destination="@id/PatientHomeFragment"
+            app:enterAnim="@anim/fade_in_center"
+            app:exitAnim="@anim/fade_out_center"
+            app:popEnterAnim="@anim/popup_enter"
+            app:popExitAnim="@anim/popup_exit" />
     </fragment>
 
 
