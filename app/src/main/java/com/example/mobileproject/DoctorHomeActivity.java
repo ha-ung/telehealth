@@ -8,9 +8,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,11 +23,15 @@ public class DoctorHomeActivity extends AppCompatActivity {
     DoctorHomeFragment doctorHomeFragment;
     EditProfileFragment profileFragment;
     DoctorMessageFragment doctorMessageFragment;
+    private int exitCount;
+    private String current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home);
+
+        exitCount = 0;
 
         doctorHomeFragment = new DoctorHomeFragment();
         profileFragment = new EditProfileFragment();
@@ -37,19 +44,38 @@ public class DoctorHomeActivity extends AppCompatActivity {
                         .findFragmentById(R.id.frame_layout_doctor);
         NavController navController = navHostFragment.getNavController();*/
         replaceFragment(R.id.DoctorHomeFragment);
+        current = "Home";
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(R.id.DoctorHomeFragment);
+                        if (current.equals("Message"))
+                            replaceFragment(R.id.action_DoctorMessageFragment_to_DoctorHomeFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_ProfileFragment_to_DoctorHomeFragment);
+                        }
+                        current = "Home";
                         return true;
                     case R.id.profile:
-                        replaceFragment(R.id.DoctorProfileFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_DoctorHomeFragment_to_ProfileFragment);
+                        else {
+                            if (current.equals("Message"))
+                                replaceFragment(R.id.action_DoctorMessageFragment_to_ProfileFragment);
+                        }
+                        current = "Profile";
                         return true;
                     case R.id.message:
-                        replaceFragment(R.id.DoctorMessageFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_DoctorHomeFragment_to_DoctorMessageFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_ProfileFragment_to_DoctorMessageFragment);
+                        }
+                        current = "Message";
                         return true;
                 }
                 return false;
@@ -90,5 +116,26 @@ public class DoctorHomeActivity extends AppCompatActivity {
                         .findFragmentById(R.id.frame_layout_doctor);
         NavController navController = navHostFragment.getNavController();
         navController.navigate(destinationID);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        exitCount++;
+        if (exitCount == 1) {
+            Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
+        }
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                exitCount = 0;
+            }
+        }, 1000);
     }
 }

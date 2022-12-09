@@ -3,6 +3,7 @@ package com.example.mobileproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +43,20 @@ public class SimpleLoginActivity extends AppCompatActivity {
             idInputLabel.setText(savedInstanceState.getString("label"));
             inputId.setHint(savedInstanceState.getString("hint"));
         }
+        SharedPreferences account = getSharedPreferences("account", MODE_PRIVATE);
+        String loginType = account.getString("account", "");
+        if (loginType.equals("patient")) {
+            Intent intent = new Intent (SimpleLoginActivity.this, PatientHomeActivity.class);
+            intent.putExtra(EXTRA_ID, account.getInt(EXTRA_ID, 0));
+            intent.putExtra(EXTRA_USER_ID, account.getInt(EXTRA_USER_ID, 0));
+            startActivity(intent);
+        } else {
+            if (loginType.equals("doctor")) {
+                Intent intent = new Intent (SimpleLoginActivity.this, DoctorHomeActivity.class);
+                intent.putExtra(EXTRA_ID, account.getInt(EXTRA_ID, 0));
+                startActivity(intent);
+            }
+        }
     }
 
     @Override
@@ -76,6 +91,14 @@ public class SimpleLoginActivity extends AppCompatActivity {
                 Integer userId = patientDao.getUserIdById(patientId);
                 Intent idIntent = new Intent (SimpleLoginActivity.this, PatientHomeActivity.class);
                 intent.putExtra(EXTRA_USER_ID, userId);
+
+                SharedPreferences account = getSharedPreferences("account", MODE_PRIVATE);
+                SharedPreferences.Editor editor = account.edit();
+                editor.putString("account", "patient");
+                editor.putInt(EXTRA_ID, id);
+                editor.putInt(EXTRA_USER_ID, userId);
+                editor.apply();
+
                 startActivity(intent);
             }
             else {
@@ -87,6 +110,13 @@ public class SimpleLoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent (SimpleLoginActivity.this, DoctorHomeActivity.class);
                 intent.putExtra(EXTRA_ID, id);
+
+                SharedPreferences account = getSharedPreferences("account", MODE_PRIVATE);
+                SharedPreferences.Editor editor = account.edit();
+                editor.putString("account", "doctor");
+                editor.putInt(EXTRA_ID, id);
+                editor.apply();
+
                 startActivity(intent);
             }
             else {

@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.mobileproject.db.CasesDao;
 import com.example.mobileproject.db.TelehealthDatabase;
@@ -25,12 +28,16 @@ public class PatientHomeActivity extends AppCompatActivity {
     PatientMessageFragment patientMessageFragment;
     private String doctorPhoneNumber;
     private Integer caseId;
+    private int exitCount;
     public static final String EXTRA_ID = "com.example.android.mobileproject.extra.ID";
+    private String current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home);
+
+        exitCount = 0;
 
         TelehealthDatabase appDatabase = TelehealthDatabase.getDbInstance(this);
         CasesDao casesDao = appDatabase.casesDao();
@@ -45,6 +52,7 @@ public class PatientHomeActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_nav_patient);
         replaceFragment(R.id.PatientHomeFragment);
+        current = "Home";
         /*
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
@@ -57,18 +65,37 @@ public class PatientHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        replaceFragment(R.id.PatientHomeFragment);
+                        if (current.equals("Message"))
+                            replaceFragment(R.id.action_MessageFragment_to_HomeFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_patientHomeActivity_ProfileFragment_to_HomeFragment);
+                        }
+                        current = "Home";
                         return true;
                     case R.id.profile:
-                        replaceFragment(R.id.PatientProfileFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_HomeFragment_to_patientHomeActivity_ProfileFragment);
+                        else {
+                            if (current.equals("Message"))
+                                replaceFragment(R.id.action_MessageFragment_to_patientHomeActivity_ProfileFragment);
+                        }
+                        current = "Profile";
                         return true;
                     case R.id.message:
-                        replaceFragment(R.id.PatientMessageFragment);
+                        if (current.equals("Home"))
+                            replaceFragment(R.id.action_HomeFragment_to_MessageFragment);
+                        else {
+                            if (current.equals("Profile"))
+                                replaceFragment(R.id.action_patientHomeActivity_ProfileFragment_to_MessageFragment);
+                        }
+                        current = "Message";
                         return true;
                 }
                 return false;
             }
         });
+
     }
 
     @Override
@@ -105,5 +132,26 @@ public class PatientHomeActivity extends AppCompatActivity {
                         .findFragmentById(R.id.frame_layout_patient);
         NavController navController = navHostFragment.getNavController();
         navController.navigate(destinationID);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        exitCount++;
+        if (exitCount == 1) {
+            Toast.makeText(this, "Press Back again to exit", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
+        }
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                exitCount = 0;
+            }
+        }, 1000);
     }
 }
