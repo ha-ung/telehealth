@@ -18,7 +18,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class DoctorHomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     DoctorHomeFragment doctorHomeFragment;
-    ProfileFragment profileFragment;
+    EditProfileFragment profileFragment;
     DoctorMessageFragment doctorMessageFragment;
 
     @Override
@@ -27,7 +27,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_home);
 
         doctorHomeFragment = new DoctorHomeFragment();
-        profileFragment = new ProfileFragment();
+        profileFragment = new EditProfileFragment();
         doctorMessageFragment= new DoctorMessageFragment();
 
         bottomNavigationView = findViewById(R.id.bottom_nav_doctor);

@@ -17,4 +17,7 @@ public interface DoctorDao {
     @Query("SELECT user_id FROM Doctor WHERE doctor_id = :id")
     public Integer getUserIdById(Integer id);
 
+    @Query("UPDATE Doctor SET password = :password WHERE doctor_id = :id")
+    public void updatePasswordById(Integer id, String password);
+
 }

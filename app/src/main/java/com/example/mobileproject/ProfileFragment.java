@@ -99,37 +99,37 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        addListenerOnButton();
-
-        this.birthday_input = (EditText) requireView().findViewById(R.id.birthday_input);
-        firstname = (EditText) requireView().findViewById(R.id.first_name_input);
-        lastname = (EditText) requireView().findViewById(R.id.last_name_input);
-        birthday = (EditText) requireView().findViewById(R.id.birthday_input);
-        phone = (EditText) requireView().findViewById(R.id.phone_input);
-        password = (EditText) requireView().findViewById(R.id.password_input);
-
-        Button buttonDate = (Button) getView().findViewById(R.id.button_date);
-        Button buttonUpdate = (Button) getView().findViewById(R.id.button_update);
-
-        buttonDate.setOnClickListener(v -> buttonSelectDate());
-        buttonUpdate.setOnClickListener(v -> updateProfile());
-
-
-        // Get Current Date
-        final Calendar c = Calendar.getInstance();
-        this.lastSelectedYear = c.get(Calendar.YEAR);
-        this.lastSelectedMonth = c.get(Calendar.MONTH);
-        this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-    }
-
+//    @Override
+//    public void onViewCreated(View view, Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
+//
+//        addListenerOnButton();
+//
+//        this.birthday_input = (EditText) requireView().findViewById(R.id.birthday_input);
+//        firstname = (EditText) requireView().findViewById(R.id.first_name_input);
+//        lastname = (EditText) requireView().findViewById(R.id.last_name_input);
+//        birthday = (EditText) requireView().findViewById(R.id.birthday_input);
+//        phone = (EditText) requireView().findViewById(R.id.phone_input);
+//        password = (EditText) requireView().findViewById(R.id.password_input);
+//
+//        Button buttonDate = (Button) getView().findViewById(R.id.button_date);
+//        Button buttonUpdate = (Button) getView().findViewById(R.id.button_update);
+//
+//        buttonDate.setOnClickListener(v -> buttonSelectDate());
+//        buttonUpdate.setOnClickListener(v -> updateProfile());
+//
+//
+//        // Get Current Date
+//        final Calendar c = Calendar.getInstance();
+//        this.lastSelectedYear = c.get(Calendar.YEAR);
+//        this.lastSelectedMonth = c.get(Calendar.MONTH);
+//        this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+//    }
+//
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -137,67 +137,70 @@ public class ProfileFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
 
-    // User click on 'Select Date' button.
-    private void buttonSelectDate() {
-
-        // Date Select Listener.
-        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
-
-            birthday_input.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
-            lastSelectedYear = year;
-            lastSelectedMonth = monthOfYear;
-            lastSelectedDayOfMonth = dayOfMonth;
-        };
-
-        DatePickerDialog datePickerDialog =  new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
-
-        // Show
-        datePickerDialog.show();
+    public void updateProfile(View view) {
     }
-
-    public void addListenerOnButton() {
-
-        radioGroup = (RadioGroup) getView().findViewById(R.id.gender_group);
-
-        btnDisplay.setOnClickListener(v -> {
-
-            // get selected radio button from radioGroup
-            int selectedId = radioGroup.getCheckedRadioButtonId();
-
-            // find the radiobutton by returned id
-            radioButton = (RadioButton) getView().findViewById(selectedId);
-
-            gender_input = (EditText) radioButton.getText();
-
-        });
-    }
-
-    public void updateProfile() {
-        TelehealthDatabase db = TelehealthDatabase.getDbInstance(getActivity());
-
-        CasesDao casesDao = db.casesDao();
-        UserDao userDao = db.userDao();
-        PatientDao patientDao = db.patientDao();
-        DoctorDao doctorDao = db.doctorDao();
-
-        int user;
-
-        if (userId == 0 && caseId != 0) {
-            user = DOCTOR;
-        } else {
-            user = PATIENT;
-        }
-        if (user == DOCTOR) {
-            Integer doctorId = caseId;
-            userId = doctorDao.getUserIdById(doctorId);
-        }
-
-        userDao.updateProfile(userId, firstname.getText().toString(), lastname.getText().toString(), birthday.getText().toString(), phone.getText().toString());
-        Integer patientId = patientDao.getPatientIdById(userId);
-        userDao.updatePassword(patientId, password.getText().toString());
-    }
+//
+//    // User click on 'Select Date' button.
+//    private void buttonSelectDate() {
+//
+//        // Date Select Listener.
+//        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
+//
+//            birthday_input.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+//
+//            lastSelectedYear = year;
+//            lastSelectedMonth = monthOfYear;
+//            lastSelectedDayOfMonth = dayOfMonth;
+//        };
+//
+//        DatePickerDialog datePickerDialog =  new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar, dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
+//
+//        // Show
+//        datePickerDialog.show();
+//    }
+//
+//    public void addListenerOnButton() {
+//
+//        radioGroup = (RadioGroup) getView().findViewById(R.id.gender_group);
+//
+//        btnDisplay.setOnClickListener(v -> {
+//
+//            // get selected radio button from radioGroup
+//            int selectedId = radioGroup.getCheckedRadioButtonId();
+//
+//            // find the radiobutton by returned id
+//            radioButton = (RadioButton) getView().findViewById(selectedId);
+//
+//            gender_input = (EditText) radioButton.getText();
+//
+//        });
+//    }
+//
+//    public void updateProfile() {
+//        TelehealthDatabase db = TelehealthDatabase.getDbInstance(getActivity());
+//
+//        CasesDao casesDao = db.casesDao();
+//        UserDao userDao = db.userDao();
+//        PatientDao patientDao = db.patientDao();
+//        DoctorDao doctorDao = db.doctorDao();
+//
+//        int user;
+//
+//        if (userId == 0 && caseId != 0) {
+//            user = DOCTOR;
+//        } else {
+//            user = PATIENT;
+//        }
+//        if (user == DOCTOR) {
+//            Integer doctorId = caseId;
+//            userId = doctorDao.getUserIdById(doctorId);
+//        }
+//
+//        userDao.updateProfile(userId, firstname.getText().toString(), lastname.getText().toString(), birthday.getText().toString(), phone.getText().toString());
+//        Integer patientId = patientDao.getPatientIdById(userId);
+//        userDao.updatePassword(patientId, password.getText().toString());
+//    }
 }

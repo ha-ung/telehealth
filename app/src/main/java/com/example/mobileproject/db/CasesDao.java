@@ -28,4 +28,7 @@ public interface CasesDao {
 
     @Query("SELECT phone_number FROM User WHERE user_id IN (SELECT user_id FROM Doctor WHERE doctor_id IN (SELECT doctor_id FROM Cases WHERE case_id = :id))")
     public String getDoctorPhoneNumberByCaseId(Integer id);
+
+    @Query("UPDATE Cases SET password = :password WHERE case_id = :id")
+    public void updatePasswordById(Integer id, String password);
 }

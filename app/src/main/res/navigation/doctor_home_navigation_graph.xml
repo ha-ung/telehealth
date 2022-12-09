@@ -32,9 +32,9 @@
     </fragment>
     <fragment
         android:id="@+id/DoctorProfileFragment"
-        android:name="com.example.mobileproject.ProfileFragment"
+        android:name="com.example.mobileproject.EditProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile">
+        tools:layout="@layout/fragment_edit_profile">
 
         <action
             android:id="@+id/action_ProfileFragment_to_DoctorMessageFragment"

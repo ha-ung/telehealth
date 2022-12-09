@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +21,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class PatientHomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     PatientHomeFragment patientHomeFragment;
-    ProfileFragment profileFragment;
+    EditProfileFragment profileFragment;
     PatientMessageFragment patientMessageFragment;
     private String doctorPhoneNumber;
     private Integer caseId;
@@ -39,7 +40,7 @@ public class PatientHomeActivity extends AppCompatActivity {
         doctorPhoneNumber = casesDao.getDoctorPhoneNumberByCaseId(caseId);
 
         patientHomeFragment = new PatientHomeFragment();
-        profileFragment = new ProfileFragment();
+        profileFragment = new EditProfileFragment();
         patientMessageFragment = new PatientMessageFragment();
 
         bottomNavigationView = findViewById(R.id.bottom_nav_patient);
